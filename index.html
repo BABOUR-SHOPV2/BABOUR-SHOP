@@ -264,7 +264,7 @@ function persist(){
   // حفظ سحابي للأدمن + نسخة محلية
   if (online && isAdmin) {
     db.ref("shop/items").set(items).then(()=>toast("☁️ تم الحفظ — ظاهر الآن للجميع!"))
-      .catch(()=>toast("⚠️ فشل الحفظ السحابي"));
+      .catch(err=>toast("⚠️ فشل الحفظ: "+(err&&err.message?err.message:"تحقق من Firebase")));
   }
   localStorage.setItem("babour_items", JSON.stringify(items));
 }
@@ -273,10 +273,13 @@ function loadData(){
   if (online) {
     db.ref("shop/items").on("value", snap=>{
       const val = snap.val();
-      if (val && Array.isArray(val) && val.length) {
-        items = val;
+      // Firebase قد يخزن كـ object بدل array — نحوله دائماً لقائمة
+      let arr = [];
+      if (val) { arr = Array.isArray(val) ? val : Object.values(val); arr = arr.filter(Boolean); }
+      if (arr.length) {
+        items = arr;
       } else {
-        items = DEFAULT_ITEMS;
+        items = DEFAULT_ITEMS.slice();
         if (isAdmin) persist(); // أول مرة: ارفع الافتراضي للسحابة
       }
       localStorage.setItem("babour_items", JSON.stringify(items));
