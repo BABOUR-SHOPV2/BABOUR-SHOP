@@ -204,10 +204,10 @@ const ADMIN_PASS = "babour123";
 // 2) افتح Realtime Database واضغط "أنشئ قاعدة بيانات"
 // 3) انسخ بيانات المشروع من الإعدادات (Project settings) والصقها هنا:
 const firebaseConfig = {
-  apiKey: "ضع_مفتاح_API_هنا",
-  authDomain: "مشروعك.firebaseapp.com",
-  databaseURL: "https://مشروعك-default-rtdb.firebaseio.com",
-  projectId: "مشروعك"
+  apiKey: "AIzaSyAIYDQBzQ3ynmsq4Vxy3-HZc-U0DiZh80k",
+  authDomain: "babour-shopv1.firebaseapp.com",
+  databaseURL: "https://babour-shopv1-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "babour-shopv1"
 };
 
 // قاعدة البيانات مجانية 100% — بعد إنشائها الصق هذه القواعد في Rules:
@@ -246,7 +246,7 @@ let online = false;
 
 // ====== الاتصال بقاعدة البيانات ======
 try {
-  if (firebaseConfig.apiKey !== "ضع_مفتاح_API_هنا") {
+  if (firebaseConfig.apiKey && firebaseConfig.apiKey.length > 10) {
     firebase.initializeApp(firebaseConfig);
     db = firebase.database();
     online = true;
