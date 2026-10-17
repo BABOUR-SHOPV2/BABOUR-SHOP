@@ -101,6 +101,7 @@ footer{background:#0a0a0a;border-top:2px solid var(--yellow);text-align:center;p
   <p>أقوى سيرفر SA-MP يمني — عالم مفتوح، أحداث يومية، ومتجر كامل للألعاب (TOYS) والمركبات (VEHICLES). انضم للعائلة وابدأ المغامرة!</p>
   <a class="btn" href="#shop">🛒 تسوق الآن</a>
   <a class="btn btn-outline" href="#about" style="margin-right:10px">تعرف علينا</a>
+  <a class="btn" href="#" onclick="joinGroup();return false;" style="margin-right:10px;background:#25D366;color:#fff">💬 انضم لمجموعة الواتساب</a>
   <div class="stats">
     <div class="stat"><b>200+</b><span>لاعب يومياً</span></div>
     <div class="stat"><b>24/7</b><span>السيرفر يعمل</span></div>
@@ -131,8 +132,8 @@ footer{background:#0a0a0a;border-top:2px solid var(--yellow);text-align:center;p
       تسوق من المتجر واستلم مشترياتك داخل اللعبة، شارك في الأحداث اليومية، واربح جوائز قيّمة!
     </p>
     <div class="stats" style="margin-top:40px">
-      <div class="stat"><b>💬</b><span>واتساب: +212 630315122</span></div>
-      <div class="stat"><b>🌐</b><span>IP: soon.babour.com:7777</span></div>
+      <div class="stat"><b>💬</b><span>واتساب: +212 617767233</span></div>
+      <div class="stat"><b>🌐</b><span>IP: 89.42.88.238:5577</span></div>
       <div class="stat"><b>🕐</b><span>افتتاح 2026</span></div>
     </div>
   </div>
@@ -213,7 +214,9 @@ const firebaseConfig = {
 // قاعدة البيانات مجانية 100% — بعد إنشائها الصق هذه القواعد في Rules:
 // { "rules": { ".read": true, ".write": true } }
 
-const WHATSAPP = "212630315122";
+const WHATSAPP = "212617767233";
+// ⚠️ ضع رابط مجموعة الواتساب الحقيقي هنا (من إعدادات المجموعة > دعوة عبر رابط):
+const WHATSAPP_GROUP = "https://chat.whatsapp.com/ضع_رابط_المجموعة_هنا";
 
 const DEFAULT_ITEMS = [
  {id:1,name:"تيربو خارق",cat:"toys",price:500,img:""},
@@ -316,6 +319,8 @@ function filterCat(c,btn){
   btn.classList.add("active");
   renderShop();
 }
+
+function joinGroup(){ window.open(WHATSAPP_GROUP, "_blank"); }
 
 function buy(name){
   const price = (items.find(i=>i.name===name)||{}).price || "";
